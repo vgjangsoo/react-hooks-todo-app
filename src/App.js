@@ -12,8 +12,12 @@ function App() {
   function handleNewTodo(e) {
     e.preventDefault();
     if (newTodo === '') return
-    setTodos([...todos, { id: Date.new(), text: newTodo }]);
+    setTodos([...todos, { id: Date.now(), text: newTodo }]);
     e.target.reset();
+  };
+
+  function removeTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
 
   return (
@@ -22,8 +26,12 @@ function App() {
       <form onSubmit={handleNewTodo}>
         <input placeholder="Your todo..." onChange={handleNewTodoChange} />
         <ul>
-          <li>Buy Milk</li>
-          <li>Buy Cheese</li>
+          {todos.map((todo) => (
+            <li key={todo.id}>
+              {todo.text}
+              <a href="#" onClick={() => removeTodo(todo.id)}>X</a>
+            </li>
+          ))}
         </ul>
       </form>
     </div>
