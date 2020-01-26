@@ -11,7 +11,9 @@ function App() {
   };
   function handleNewTodo(e) {
     e.preventDefault();
-    console.log(newTodo);
+    if (newTodo === '') return
+    setTodos([...todos, { id: Date.new(), text: newTodo }]);
+    e.target.reset();
   }
 
   return (
