@@ -25,10 +25,10 @@ function App() {
       <h1>Todos</h1>
       <form onSubmit={handleNewTodo}>
         <input placeholder="Your todo..." onChange={handleNewTodoChange} />
-        <ul>
+        <ul className="todolist">
           {todos.map((todo) => (
-            <li key={todo.id}>
-              {todo.text}
+            <li key={todo.id} className="todo">
+              <span>{todo.text}</span>
               <a href="#" onClick={() => removeTodo(todo.id)}>X</a>
             </li>
           ))}
